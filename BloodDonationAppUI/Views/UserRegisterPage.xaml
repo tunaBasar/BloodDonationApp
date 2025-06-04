@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BloodDonationAppUI.Views.UserRegisterPage"
+             Style="{StaticResource PageStyle}"
+             Title="Kayıt Ol">
+
+    <ScrollView>
+        <StackLayout>
+            <Grid HeightRequest="180">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="1,1">
+                        <GradientStop Color="{StaticResource GradientStart}"
+                                      Offset="0.0"/>
+                        <GradientStop Color="{StaticResource GradientEnd}"
+                                      Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <StackLayout VerticalOptions="Center"
+                             Spacing="10">
+                    <Label Text="📝"
+                           FontSize="50"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Gönüllü Bağışçı Kayıt"
+                           Style="{StaticResource TitleLabel}"
+                           FontSize="24"/>
+                    <Label Text="Hayat kurtarma misyonumuza katıl"
+                           FontSize="14"
+                           TextColor="{StaticResource White}"
+                           HorizontalOptions="Center"
+                           Opacity="0.9"/>
+                </StackLayout>
+            </Grid>
+
+            <Frame Style="{StaticResource CardFrame}"
+                   Margin="20,20,20,10">
+                <StackLayout Spacing="15">
+
+                    <Label Text="Kişisel Bilgiler"
+                           Style="{StaticResource SubHeaderLabel}"
+                           TextColor="{StaticResource Primary}"/>
+
+                    <StackLayout Spacing="10">
+                        <Entry x:Name="FirstNameEntry"
+                               Placeholder="Ad"
+                               Style="{StaticResource ModernEntry}"/>
+
+                        <Entry x:Name="LastNameEntry"
+                               Placeholder="Soyad"
+                               Style="{StaticResource ModernEntry}"/>
+
+                        <Entry x:Name="TCNumberEntry"
+                               Placeholder="TC Kimlik Numarası"
+                               Keyboard="Numeric"
+                               MaxLength="11"
+                               Style="{StaticResource ModernEntry}"/>
+
+                        <DatePicker x:Name="BirthDatePicker"
+                                    Format="dd/MM/yyyy"
+                                    BackgroundColor="{StaticResource White}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontSize="16"
+                                    HeightRequest="50"
+                                    Margin="0,5"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame Style="{StaticResource CardFrame}"
+                   Margin="20,10,20,10">
+                <StackLayout Spacing="15">
+                    <Label Text="İletişim Bilgileri"
+                           Style="{StaticResource SubHeaderLabel}"
+                           TextColor="{StaticResource Primary}"/>
+
+                    <Entry x:Name="PhoneEntry"
+                           Placeholder="Telefon Numarası"
+                           Keyboard="Telephone"
+                           Style="{StaticResource ModernEntry}"/>
+
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="E-posta Adresi"
+                           Keyboard="Email"
+                           Style="{StaticResource ModernEntry}"/>
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Şifre"
+                           Keyboard="Password"
+                           Style="{StaticResource ModernEntry}"/>
+
+                    <StackLayout
+                        MaximumHeightRequest="150">
+                        <Label Text="Şehir"
+                               TextColor="{StaticResource TextPrimary}"
+                               FontSize="16"
+                               Margin="0,0,0,5"/>
+                        <Picker x:Name="CityGroupPicker"
+                                Title="Şehrinizi seçin"
+                                Style="{StaticResource ModernPicker}"
+                                HeightRequest="50">
+                            <Picker.Items>
+                                <x:String>Istanbul</x:String>
+                                <x:String>Ankara</x:String>
+                                <x:String>Izmir</x:String>
+                                <x:String>Antalya</x:String>
+                                <x:String>Konya</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame Style="{StaticResource CardFrame}"
+                   Margin="20,10,20,10">
+                <StackLayout Spacing="15">
+                    <Label Text="Tıbbi Bilgiler"
+                           Style="{StaticResource SubHeaderLabel}"
+                           TextColor="{StaticResource Primary}"/>
+
+                    <StackLayout
+                        MaximumHeightRequest="150">
+                        <Label Text="Kan Grubu"
+                               TextColor="{StaticResource TextPrimary}"
+                               FontSize="16"
+                               Margin="0,0,0,5"/>
+
+                        <Picker x:Name="BloodGroupPicker"
+                                Title="Kan grubunuzu seçin"
+                                Style="{StaticResource ModernPicker}"
+                                HeightRequest="50">
+                            <Picker.Items>
+                                <x:String>APositive</x:String>
+                                <x:String>ANegative</x:String>
+                                <x:String>BPositive</x:String>
+                                <x:String>BNegative</x:String>
+                                <x:String>ABPositive</x:String>
+                                <x:String>ABNegative</x:String>
+                                <x:String>OPositive</x:String>
+                                <x:String>ONegative</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame Style="{StaticResource CardFrame}"
+                   Margin="20,10,20,10">
+                <StackLayout Spacing="15">
+                    <Label Text="Sözleşme ve Onaylar"
+                           Style="{StaticResource SubHeaderLabel}"
+                           TextColor="{StaticResource Primary}"/>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="10">
+                        <CheckBox x:Name="TermsCheckBox"
+                                  Color="{StaticResource Primary}"/>
+                        <Label VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Kullanım şartlarını ve "
+                                          TextColor="{StaticResource TextPrimary}"
+                                          FontSize="14"/>
+                                    <Span Text="gizlilik politikasını"
+                                          TextColor="{StaticResource Primary}"
+                                          FontSize="14"
+                                          TextDecorations="Underline"/>
+                                    <Span Text=" okudum ve kabul ediyorum"
+                                          TextColor="{StaticResource TextPrimary}"
+                                          FontSize="14"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="10">
+                        <CheckBox x:Name="ContactCheckBox"
+                                  Color="{StaticResource Primary}"/>
+                        <Label Text="Acil durumlarda benimle iletişime geçilmesini onaylıyorum"
+                               TextColor="{StaticResource TextPrimary}"
+                               FontSize="14"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Padding="20,10,20,30"
+                         Spacing="10">
+                <Button Text="KAYIT OL"
+                        Style="{StaticResource PrimaryButton}"
+                        HeightRequest="55"
+                        FontSize="18"
+                        Clicked="OnRegisterClicked"/>
+
+                <Button Text="Zaten hesabım var"
+                        Style="{StaticResource OutlineButton}"
+                        HeightRequest="50"
+                        FontSize="16"
+                        Clicked="OnLoginClicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BloodDonationAppUI.Views.UserHomePage"
+             BackgroundColor="{StaticResource LightGray}">
+
+       <Grid RowDefinitions="Auto,*"
+             ColumnDefinitions="2*,5*"
+             Padding="0">
+
+              <!-- Sol Panel -->
+              <Frame Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Grid.Column="0"
+                     BackgroundColor="{StaticResource White}"
+                     CornerRadius="15"
+                     HasShadow="True"
+                     Padding="0">
+
+                     <StackLayout Padding="25"
+                                  Spacing="25">
+
+                            <Frame BackgroundColor="{StaticResource PrimaryLight}"
+                                   CornerRadius="50"
+                                   HeightRequest="100"
+                                   WidthRequest="100"
+                                   HasShadow="True"
+                                   Padding="0"
+                                   HorizontalOptions="Center">
+                                   <Image Source="user_placeholder.png"
+                                          HeightRequest="80"
+                                          WidthRequest="80"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center"/>
+                            </Frame>
+
+                            <StackLayout Spacing="8">
+                                   <Label x:Name="FullNameLabel"
+                                          Style="{StaticResource SubHeaderLabel}"
+                                          HorizontalOptions="Center"
+                                          HorizontalTextAlignment="Center"/>
+
+                                   <Label x:Name="TcLabel"
+                                          Style="{StaticResource BodyLabel}"
+                                          HorizontalOptions="Center"
+                                          HorizontalTextAlignment="Center"/>
+
+                                   <Frame BackgroundColor="{StaticResource Primary}"
+                                          CornerRadius="15"
+                                          HasShadow="False"
+                                          Padding="12,8"
+                                          HorizontalOptions="Center">
+                                          <Label x:Name="BloodTypeLabel"
+                                                 TextColor="{StaticResource TextLight}"
+                                                 FontSize="16"
+                                                 FontAttributes="Bold"
+                                                 HorizontalOptions="Center"/>
+                                   </Frame>
+
+                                   <Label x:Name="CityLabel"
+                                          Style="{StaticResource BodyLabel}"
+                                          HorizontalOptions="Center"
+                                          HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+
+                            <BoxView HeightRequest="2"
+                                     BackgroundColor="{StaticResource Primary}"
+                                     CornerRadius="1"
+                                     Opacity="0.3"
+                                     Margin="20,0"/>
+
+                            <VerticalStackLayout Spacing="15"
+                                                 HorizontalOptions="FillAndExpand">
+
+                                   <Button Text="🩸 Talepte Bulun"
+                                           Style="{StaticResource PrimaryButton}"
+                                           FontSize="15"
+                                           Clicked="OnTalepteBulunClicked"/>
+
+                                   <Button Text="📋 Taleplerimi Gör"
+                                           Style="{StaticResource SecondaryButton}"
+                                           Clicked="OnTaleplerimiGorClicked"
+                                           FontSize="15"/>
+
+                                   <Button Text="🚪 Çıkış Yap"
+                                           BackgroundColor="{StaticResource Error}"
+                                           TextColor="White"
+                                           CornerRadius="25"
+                                           HeightRequest="50"
+                                           FontSize="15"
+                                           FontAttributes="Bold"
+                                           Margin="0,10"
+                                           Clicked="OnCikisYapClicked"/>
+                            </VerticalStackLayout>
+                     </StackLayout>
+              </Frame>
+
+              <Grid Grid.Row="0"
+                    Grid.Column="1"
+                    RowDefinitions="Auto,*"
+                    ColumnDefinitions="*"
+                    Padding="25">
+
+                     <StackLayout Grid.Row="0"
+                                  Spacing="20">
+                            <Label Text="Kan Bağışı Merkezi"
+                                   Style="{StaticResource HeaderLabel}"
+                                   HorizontalOptions="Start"
+                                   Margin="0,10,0,15"/>
+                            <Frame Style="{StaticResource CardFrame}"
+                                   Padding="15"
+                                   Margin="0">
+                                   <HorizontalStackLayout Spacing="15">
+                                          <Frame BackgroundColor="{StaticResource LightGray}"
+                                                 CornerRadius="20"
+                                                 HasShadow="False"
+                                                 Padding="0"
+                                                 HorizontalOptions="FillAndExpand">
+                                                 <SearchBar Placeholder="🔍 Ara..."
+                                                            BackgroundColor="Transparent"
+                                                            HeightRequest="40"
+                                                            PlaceholderColor="{StaticResource TextSecondary}"
+                                                            TextColor="{StaticResource TextPrimary}"
+                                                            HorizontalOptions="FillAndExpand"/>
+                                          </Frame>
+
+                                          <Button Text="🔽 Filtrele"
+                                                  Style="{StaticResource OutlineButton}"
+                                                  HeightRequest="40"
+                                                  WidthRequest="120"
+                                                  CornerRadius="20"
+                                                  FontSize="14"
+                                                  HorizontalOptions="End"/>
+                                   </HorizontalStackLayout>
+                            </Frame>
+                     </StackLayout>
+
+                     <ScrollView Grid.Row="1"
+                                 VerticalOptions="FillAndExpand"
+                                 Padding="0,10">
+                            <CollectionView x:Name="RequestListView"
+                                            VerticalOptions="FillAndExpand"
+                                            ItemsLayout="VerticalList"
+                                            SelectionMode="None"
+                                            ItemSizingStrategy="MeasureAllItems">
+                                   <CollectionView.ItemTemplate>
+                                          <DataTemplate>
+                                                 <Grid Padding="5,8">
+                                                        <Frame BackgroundColor="White"
+                                                               Padding="20"
+                                                               Margin="0"
+                                                               CornerRadius="15"
+                                                               HasShadow="True"
+                                                               HeightRequest="130">
+
+                                                               <Grid RowDefinitions="Auto,Auto,*"
+                                                                     ColumnDefinitions="*,Auto,Auto">
+
+                                                                      <HorizontalStackLayout Grid.Row="0"
+                                                                                             Grid.Column="0"
+                                                                                             Grid.ColumnSpan="2"
+                                                                                             Spacing="15"
+                                                                                             VerticalOptions="Start">
+                                                                             <Label Text="{Binding Id}"
+                                                                                    IsVisible="False"
+                                                                                    x:Name="HiddenIdLabel"/>
+                                                                             <Label Text="{Binding Tc}"
+                                                                                    FontSize="16"
+                                                                                    TextColor="{StaticResource TextPrimary}"
+                                                                                    FontAttributes="Bold"/>
+
+                                                                             <Frame BackgroundColor="{StaticResource Primary}"
+                                                                                    CornerRadius="12"
+                                                                                    HasShadow="False"
+                                                                                    Padding="8,4"
+                                                                                    VerticalOptions="Center">
+                                                                                    <Label Text="{Binding BloodType}"
+                                                                                           TextColor="White"
+                                                                                           FontSize="14"
+                                                                                           FontAttributes="Bold"/>
+                                                                             </Frame>
+                                                                      </HorizontalStackLayout>
+
+                                                                      <HorizontalStackLayout Grid.Row="1"
+                                                                                             Grid.Column="0"
+                                                                                             Grid.ColumnSpan="2"
+                                                                                             Spacing="20"
+                                                                                             Margin="0,8,0,0">
+                                                                             <HorizontalStackLayout Spacing="5">
+                                                                                    <Label Text="📍"
+                                                                                           FontSize="14"
+                                                                                           VerticalOptions="Center"/>
+                                                                                    <Label Text="{Binding City}"
+                                                                                           TextColor="{StaticResource TextSecondary}"
+                                                                                           FontSize="14"/>
+                                                                             </HorizontalStackLayout>
+
+                                                                             <HorizontalStackLayout Spacing="5">
+                                                                                    <Label Text="⚡"
+                                                                                           FontSize="14"
+                                                                                           VerticalOptions="Center"/>
+                                                                                    <Label Text="{Binding UrgencyLevel}"
+                                                                                           TextColor="{StaticResource TextSecondary}"
+                                                                                           FontSize="14"/>
+                                                                             </HorizontalStackLayout>
+                                                                      </HorizontalStackLayout>
+
+                                                                      <HorizontalStackLayout Grid.Row="2"
+                                                                                             Grid.Column="0"
+                                                                                             Spacing="5"
+                                                                                             VerticalOptions="End">
+                                                                             <Ellipse Fill="{StaticResource Success}"
+                                                                                      WidthRequest="8"
+                                                                                      HeightRequest="8"
+                                                                                      VerticalOptions="Center"/>
+                                                                             <Label Text="Aktif"
+                                                                                    TextColor="{StaticResource Success}"
+                                                                                    FontSize="12"
+                                                                                    FontAttributes="Bold"
+                                                                                    VerticalOptions="Center"/>
+                                                                      </HorizontalStackLayout>
+                                                                      <Button Text="Bağışçı Ol"
+                                                                              BackgroundColor="{StaticResource Primary}"
+                                                                              TextColor="White"
+                                                                              CornerRadius="20"
+                                                                              FontSize="12"
+                                                                              FontAttributes="Bold"
+                                                                              Padding="15,8"
+                                                                              HeightRequest="35"
+                                                                              WidthRequest="90"
+                                                                              HorizontalOptions="End"
+                                                                              VerticalOptions="End"
+                                                                              Grid.Row="2"
+                                                                              Grid.Column="2"
+                                                                              Clicked="OnDonateButtonClicked"/>
+                                                               </Grid>
+                                                        </Frame>
+                                                 </Grid>
+                                          </DataTemplate>
+                                   </CollectionView.ItemTemplate>
+                            </CollectionView>
+                     </ScrollView>
+              </Grid>
+
+       </Grid>
+
+</ContentPage>

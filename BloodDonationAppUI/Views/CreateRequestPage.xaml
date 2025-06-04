@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BloodDonationAppUI.Views.CreateRequestPage"
+             Title="Talep Oluştur"
+             BackgroundColor="{StaticResource LightGray}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Başlık -->
+            <Label Text="Talep Oluştur"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}"
+                   HorizontalOptions="Center"/>
+
+            <!-- Aciliyet Seviyesi Seçimi -->
+            <Label Text="Aciliyet Seviyesi"
+                   FontSize="16"
+                   TextColor="{StaticResource TextPrimary}"/>
+            <Picker x:Name="UrgencyPicker"
+                    Title="Seçiniz"
+                    BackgroundColor="{StaticResource White}"
+                    TitleColor="{StaticResource DarkGray}"
+                    TextColor="{StaticResource TextPrimary}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>High</x:String>
+                        <x:String>Medium</x:String>
+                        <x:String>Low</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Şehir"
+                   FontSize="16"
+                   TextColor="{StaticResource TextPrimary}"/>
+            <Picker x:Name="CityPicker"
+                    Title="Şehir Seçiniz"
+                    BackgroundColor="{StaticResource White}"
+                    TitleColor="{StaticResource DarkGray}"
+                    TextColor="{StaticResource TextPrimary}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Istanbul</x:String>
+                        <x:String>Ankara</x:String>
+                        <x:String>Izmir</x:String>
+                        <x:String>Antalya</x:String>
+                        <x:String>Konya</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Kullanıcı Bilgileri -->
+            <Label Text="T.C. Kimlik No"
+                   FontSize="16"
+                   TextColor="{StaticResource TextPrimary}"/>
+            <Label x:Name="TcLabel"
+                   FontSize="14"
+                   TextColor="{StaticResource TextSecondary}"/>
+
+            <Label Text="Kan Grubu"
+                   FontSize="16"
+                   TextColor="{StaticResource TextPrimary}"/>
+            <Label x:Name="BloodTypeLabel"
+                   FontSize="14"
+                   TextColor="{StaticResource TextSecondary}"/>
+
+            <Button Text="Talebi Gönder"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Clicked="OnSubmitClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

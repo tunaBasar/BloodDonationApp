@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Primary Colors -->
+    <Color x:Key="Primary">#DC143C</Color>
+    <Color x:Key="PrimaryLight">#FF6B85</Color>
+    <Color x:Key="PrimaryDark">#B71C1C</Color>
+    
+    <!-- Secondary Colors -->
+    <Color x:Key="Secondary">#1976D2</Color>
+    <Color x:Key="SecondaryLight">#63A4FF</Color>
+    <Color x:Key="SecondaryDark">#0D47A1</Color>
+    
+    <!-- Background Colors -->
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="LightGray">#F5F5F5</Color>
+    <Color x:Key="Gray">#E0E0E0</Color>
+    <Color x:Key="DarkGray">#757575</Color>
+    
+    <!-- Text Colors -->
+    <Color x:Key="TextPrimary">#212121</Color>
+    <Color x:Key="TextSecondary">#757575</Color>
+    <Color x:Key="TextLight">#FFFFFF</Color>
+    
+    <!-- Status Colors -->
+    <Color x:Key="Success">#4CAF50</Color>
+    <Color x:Key="Warning">#FF9800</Color>
+    <Color x:Key="Error">#F44336</Color>
+    
+    <!-- Accent Colors -->
+    <Color x:Key="Accent">#FF4081</Color>
+    <Color x:Key="AccentLight">#FF80AB</Color>
+    
+    <!-- Gradient Colors -->
+    <Color x:Key="GradientStart">#DC143C</Color>
+    <Color x:Key="GradientEnd">#1976D2</Color>
+
+</ResourceDictionary>

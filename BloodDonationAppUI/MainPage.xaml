@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BloodDonationAppUI.MainPage"
+             Style="{StaticResource PageStyle}"
+             Title="Kan Bağışı">
+
+    <ScrollView>
+        <StackLayout Spacing="0">
+
+            <!-- Header Section with Gradient -->
+            <Grid HeightRequest="250">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                            EndPoint="1,1">
+                        <GradientStop Color="{StaticResource GradientStart}"
+                                Offset="0.0"/>
+                        <GradientStop Color="{StaticResource GradientEnd}"
+                                Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <StackLayout VerticalOptions="Center"
+                        Spacing="15">
+                    <!-- Heart Icon -->
+                    <Label Text="❤️"
+                           FontSize="60"
+                           HorizontalOptions="Center"/>
+
+                    <Label Style="{StaticResource TitleLabel}"
+                           Text="Kan Bağışı Merkezi"/>
+
+                    <Label Text="Hayat kurtarmak için bir dokunuş yeter"
+                           FontSize="16"
+                           TextColor="{StaticResource White}"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Opacity="0.9"/>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Padding="20,30,20,20"
+                    BackgroundColor="{StaticResource LightGray}">
+                <Label Text="Bugünkü İstatistikler"
+                       Style="{StaticResource SubHeaderLabel}"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20"/>
+
+                <Grid ColumnDefinitions="*,*,*"
+                        ColumnSpacing="10">
+                    <Frame Grid.Column="0"
+                            Style="{StaticResource StatCard}">
+                        <StackLayout HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Label Text="🩸"
+                                    FontSize="30"
+                                    HorizontalOptions="Center"/>
+                            <Label Text="42"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Primary}"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Bugün Bağış"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame Grid.Column="1"
+                            Style="{StaticResource StatCard}">
+                        <StackLayout HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Label Text="💝"
+                                    FontSize="30"
+                                    HorizontalOptions="Center"/>
+                            <Label Text="126"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Secondary}"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Kurtarılan Can"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Grid.Column="2"
+                            Style="{StaticResource StatCard}">
+                        <StackLayout HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Label Text="👥"
+                                    FontSize="30"
+                                    HorizontalOptions="Center"/>
+                            <Label Text="1,247"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Success}"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Aktif Bağışçı"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Padding="20"
+                    Spacing="15">
+                <Label Text="Hızlı İşlemler"
+                       Style="{StaticResource SubHeaderLabel}"/>
+
+                <!-- Donate Blood Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                            ColumnSpacing="15">
+                        <Label Grid.Column="0"
+                               Text="🩸"
+                               FontSize="40"
+                               VerticalOptions="Center"/>
+
+                        <StackLayout Grid.Column="1"
+                                VerticalOptions="Center">
+                            <Label Text="Kan Bağışla"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TextPrimary}"/>
+                            <Label Text="Hemen kan bağışı randevusu al"
+                                   Style="{StaticResource BodyLabel}"/>
+                        </StackLayout>
+
+                        <Button Grid.Column="2"
+                                Text="Randevu Al"
+                                Style="{StaticResource PrimaryButton}"
+                                WidthRequest="120"
+                                HeightRequest="40"
+                                FontSize="14"
+                                CornerRadius="20"
+                                Clicked="OnDonateBloodClicked"/>
+                    </Grid>
+                </Frame>
+
+                <!-- Find Blood Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                            ColumnSpacing="15">
+                        <Label Grid.Column="0"
+                               Text="🔍"
+                               FontSize="40"
+                               VerticalOptions="Center"/>
+
+                        <StackLayout Grid.Column="1"
+                                VerticalOptions="Center">
+                            <Label Text="Kan Ara"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TextPrimary}"/>
+                            <Label Text="İhtiyaç duyulan kan grubunu bul"
+                                   Style="{StaticResource BodyLabel}"/>
+                        </StackLayout>
+
+                        <Button Grid.Column="2"
+                                Text="Ara"
+                                Style="{StaticResource SecondaryButton}"
+                                WidthRequest="80"
+                                HeightRequest="40"
+                                FontSize="14"
+                                CornerRadius="20"
+                                Clicked="OnFindBloodClicked"/>
+                    </Grid>
+                </Frame>
+
+                <!-- Register Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto,Auto"
+                            ColumnSpacing="15">
+                        <Label Grid.Column="0"
+                               Text="📝"
+                               FontSize="40"
+                               VerticalOptions="Center"/>
+
+                        <StackLayout Grid.Column="1"
+                                VerticalOptions="Center">
+                            <Label Text="Hesap İşlemleri"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TextPrimary}"/>
+                            <Label Text="Giriş yap veya yeni hesap oluştur"
+                                   Style="{StaticResource BodyLabel}"/>
+                        </StackLayout>
+
+                        <Button Grid.Column="2"
+                                Text="Kayıt Ol"
+                                Style="{StaticResource OutlineButton}"
+                                WidthRequest="100"
+                                HeightRequest="40"
+                                FontSize="14"
+                                CornerRadius="20"
+                                Clicked="OnRegisterClicked"/>
+                        <Button Grid.Column="3"
+                                Text="Giriş Yap"
+                                Style="{StaticResource PrimaryButton}"
+                                WidthRequest="120"
+                                HeightRequest="40"
+                                FontSize="14"
+                                CornerRadius="20"
+                                Clicked="OnLoginClicked"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <!-- Emergency Section -->
+            <Frame Style="{StaticResource CardFrame}"
+                   BackgroundColor="{StaticResource Error}"
+                   Margin="20,0,20,20">
+                <StackLayout>
+                    <Grid ColumnDefinitions="Auto,*"
+                            ColumnSpacing="15">
+                        <Label Grid.Column="0"
+                               Text="🚨"
+                               FontSize="30"
+                               VerticalOptions="Center"/>
+
+                        <StackLayout Grid.Column="1">
+                            <Label Text="ACİL KAN İHTİYACI!"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource White}"/>
+                            <Label Text="A+ kan grubu acil olarak aranıyor"
+                                   FontSize="14"
+                                   TextColor="{StaticResource White}"
+                                   Opacity="0.9"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <Button Text="HEMEN YARDIM ET"
+                            BackgroundColor="{StaticResource White}"
+                            TextColor="{StaticResource Error}"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,15,0,0"
+                            Clicked="OnEmergencyClicked"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Footer -->
+            <StackLayout Padding="20"
+                    BackgroundColor="{StaticResource DarkGray}">
+                <Label Text="Kan Bağışı Merkezi © 2024"
+                       TextColor="{StaticResource White}"
+                       HorizontalOptions="Center"
+                       FontSize="12"
+                       Opacity="0.8"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
