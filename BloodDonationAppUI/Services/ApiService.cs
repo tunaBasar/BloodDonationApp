@@ -329,5 +329,66 @@ namespace BloodDonationAppUI.Services
                 };
             }
         }
+
+        public async Task<Response<bool>> UpdateRequest(UpdateRequestDto updateRequestDto)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(updateRequestDto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PutAsync($"{baseUrl}/Request", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return new Response<bool> { Success = true };
+                }
+                else
+                {
+                    return new Response<bool>
+                    {
+                        Success = false,
+                        Message = $"API Hatası: {response.StatusCode}"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Response<bool>
+                {
+                    Success = false,
+                    Message = $"Bağlantı hatası: {ex.Message}"
+                };
+            }
+        }
+
+        public async Task<Response<bool>> DeleteRequest(int requestId)
+        {
+            try
+            {
+                var response = await httpClient.DeleteAsync($"{baseUrl}/Request/{requestId}");
+                response.EnsureSuccessStatusCode();
+                var responseJson = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    return new Response<bool> { Success = true };
+                }
+                else
+                {
+                    return new Response<bool>
+                    {
+                        Success = false,
+                        Message = $"API Hatası: {response.StatusCode}"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Response<bool>
+                {
+                    Success = false,
+                    Message = $"Bağlantı hatası: {ex.Message}"
+                };
+            }
+        }
     }
 }

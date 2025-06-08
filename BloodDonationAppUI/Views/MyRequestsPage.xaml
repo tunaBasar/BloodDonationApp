@@ -16,10 +16,10 @@
                     VerticalOptions="FillAndExpand"
                     Padding="0,10">
             <CollectionView x:Name="MyRequestsListView"
-                           VerticalOptions="FillAndExpand"
-                           ItemsLayout="VerticalList"
-                           SelectionMode="None"
-                           ItemSizingStrategy="MeasureAllItems">
+                            VerticalOptions="FillAndExpand"
+                            ItemsLayout="VerticalList"
+                            SelectionMode="None"
+                            ItemSizingStrategy="MeasureAllItems">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5,8">
@@ -29,21 +29,20 @@
                                    CornerRadius="15"
                                    HasShadow="True"
                                    HeightRequest="140">
-                                  
+
                                 <Grid RowDefinitions="Auto,Auto,*"
                                       ColumnDefinitions="*,Auto,Auto">
 
-                                    <!-- Üst Satır: TC ve Kan Grubu -->
                                     <HorizontalStackLayout Grid.Row="0"
-                                                         Grid.Column="0"
-                                                         Grid.ColumnSpan="2"
-                                                         Spacing="15"
-                                                         VerticalOptions="Start">
+                                                           Grid.Column="0"
+                                                           Grid.ColumnSpan="2"
+                                                           Spacing="15"
+                                                           VerticalOptions="Start">
                                         <Label Text="{Binding Tc}"
                                                FontSize="16"
                                                TextColor="{StaticResource TextPrimary}"
                                                FontAttributes="Bold"/>
-                                        
+
                                         <Frame BackgroundColor="{StaticResource Primary}"
                                                CornerRadius="12"
                                                HasShadow="False"
@@ -56,10 +55,10 @@
                                         </Frame>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout Grid.Row="1"
-                                                         Grid.Column="0"
-                                                         Grid.ColumnSpan="2"
-                                                         Spacing="20"
-                                                         Margin="0,8,0,0">
+                                                           Grid.Column="0"
+                                                           Grid.ColumnSpan="2"
+                                                           Spacing="20"
+                                                           Margin="0,8,0,0">
                                         <HorizontalStackLayout Spacing="5">
                                             <Label Text="📍"
                                                    FontSize="14"
@@ -68,7 +67,7 @@
                                                    TextColor="{StaticResource TextSecondary}"
                                                    FontSize="14"/>
                                         </HorizontalStackLayout>
-                                        
+
                                         <HorizontalStackLayout Spacing="5">
                                             <Label Text="⚡"
                                                    FontSize="14"
@@ -79,11 +78,10 @@
                                         </HorizontalStackLayout>
                                     </HorizontalStackLayout>
 
-                                    <!-- Alt Satır: Durum -->
                                     <HorizontalStackLayout Grid.Row="2"
-                                                         Grid.Column="0"
-                                                         Spacing="5"
-                                                         VerticalOptions="End">
+                                                           Grid.Column="0"
+                                                           Spacing="5"
+                                                           VerticalOptions="End">
                                         <Ellipse Fill="{StaticResource Success}"
                                                  WidthRequest="8"
                                                  HeightRequest="8"
@@ -94,8 +92,6 @@
                                                FontAttributes="Bold"
                                                VerticalOptions="Center"/>
                                     </HorizontalStackLayout>
-
-                                    <!-- Düzenle Butonu -->
                                     <Button Text="Düzenle"
                                             BackgroundColor="{StaticResource Secondary}"
                                             TextColor="White"
@@ -109,9 +105,8 @@
                                             VerticalOptions="End"
                                             Grid.Row="2"
                                             Grid.Column="1"
-                                            Clicked="OnEditClicked"/>
-
-                                    <!-- Sil Butonu -->
+                                            Clicked="OnEditClicked"
+                                            CommandParameter="{Binding Id}"/>
                                     <Button Text="Sil"
                                             BackgroundColor="{StaticResource Error}"
                                             TextColor="White"
@@ -125,7 +120,8 @@
                                             VerticalOptions="End"
                                             Grid.Row="2"
                                             Grid.Column="2"
-                                            Clicked="OnDeleteClicked"/>
+                                            Clicked="OnDeleteClicked"
+                                            CommandParameter="{Binding Id}"/>
                                 </Grid>
                             </Frame>
                         </Grid>

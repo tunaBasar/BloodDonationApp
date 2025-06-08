@@ -48,8 +48,6 @@ namespace BloodDonationAppUserService.Services
             var requestDtos = requests.Select(r => converter.ToResponseDto(r)).ToList();
             return Response<List<RequestResponseDto>>.SuccessResponse(requestDtos, 200);
         }
-
-
         public async Task<Response<List<RequestResponseDto>>> GetRequestsByTc(string Tc)
         {
             var requests = await context.Requests.Where(r => r.UserTc == Tc && r.IsActive != false).ToListAsync();
@@ -61,7 +59,6 @@ namespace BloodDonationAppUserService.Services
             return Response<List<RequestResponseDto>>.FailResponse("Talepler bulunamadı", 400);
 
         }
-
         public async Task<Response<bool>> UpdateRequest(UpdateRequestDto updateRequestDto)
         {
             try
@@ -77,11 +74,32 @@ namespace BloodDonationAppUserService.Services
                     return Response<bool>.SuccessResponse(true, 201);
                 }
 
-                return Response<bool>.FailResponse("request null olamaz",404);
+                return Response<bool>.FailResponse("request null olamaz", 404);
             }
             catch (Exception ex)
             {
-                return Response<bool>.FailResponse( $"Bir hata oluştu: {ex.Message}",500);
+                return Response<bool>.FailResponse($"Bir hata oluştu: {ex.Message}", 500);
+            }
+        }
+        public async Task<Response<bool>> DeleteRequest(int requestId)
+        {
+            try
+            {
+                var request = await context.Requests.FindAsync(requestId);
+                if (request != null)
+                {
+                    context.Requests.Remove(request);
+                    await context.SaveChangesAsync();
+                    return Response<bool>.SuccessResponse(true, 201);
+                }
+                else
+                {
+                    return Response<bool>.FailResponse("request null olamaz", 404);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Response<bool>.FailResponse($"Bir hata oluştu: {ex.Message}", 500);
             }
         }
 

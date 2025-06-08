@@ -70,7 +70,6 @@ namespace BloodDonationAppUI.Views
                 var button = sender as Button;
                 var selectedRequest = button?.BindingContext as RequestResponseModel;
                 string json = System.Text.Json.JsonSerializer.Serialize(selectedRequest);
-                await DisplayAlert("DEBUG JSON", json, "Tamam");
 
                 if (selectedRequest == null)
                 {

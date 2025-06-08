@@ -20,5 +20,8 @@ namespace BloodDonationAppUI.Services.Interfaces
         Task<Response<List<ApproveDto>>> GetMyApprovementsByTc(string RequesterTc);
         Task<Response<bool>> CreateDonationAsync(CreateDonationDto createDonationDto);
         Task<Response<bool>> RejectApprove(int ApproveId);
+        Task<Response<bool>> UpdateRequest(UpdateRequestDto updateRequestDto);
+
+        Task<Response<bool>> DeleteRequest(int requestId);
     }
 }

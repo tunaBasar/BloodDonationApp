@@ -86,5 +86,23 @@ namespace BloodDonationAppUserService.Controllers
                 return StatusCode(500, "Bir hata oluştu: " + ex.Message);
             }
         }
+
+        [HttpDelete("{requestId}")]
+        public async Task<ActionResult> DeleteRequest(int requestId)
+        {
+            try
+            {
+                var requests = await requestService.DeleteRequest(requestId);
+                return Ok(requests);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Bir hata oluştu: " + ex.Message);
+            }
+        }
     }
 }

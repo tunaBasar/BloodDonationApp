@@ -10,5 +10,7 @@ namespace BloodDonationAppUserService.Services.Interfaces
         Task<Response<List<RequestResponseDto>>> GetRequestsByTc(string Tc);
 
         Task<Response<bool>> UpdateRequest(UpdateRequestDto updateRequestDto);
+
+        Task<Response<bool>> DeleteRequest(int requestId);
     }
 }
