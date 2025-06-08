@@ -30,11 +30,11 @@ namespace BloodDontaionAppUserService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("RequestId")
+                    b.Property<int>("ApprovementId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserTc")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -59,6 +59,10 @@ namespace BloodDontaionAppUserService.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UrgencyLevel")
                         .IsRequired()
@@ -107,6 +111,10 @@ namespace BloodDontaionAppUserService.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

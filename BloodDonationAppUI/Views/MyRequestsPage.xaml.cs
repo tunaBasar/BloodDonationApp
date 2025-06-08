@@ -18,7 +18,7 @@ public partial class MyRequestsPage : ContentPage
     private async void LoadMyRequests()
     {
         var user = SessionManager.GetUser();
-        var tc = new GetRequestsByTcModel
+        var tc = new GetRequests
         {
             Tc = user.Tc
         };

@@ -22,6 +22,7 @@ namespace BloodDonationAppUI.Views
             var user = SessionManager.GetUser();
             if (user != null)
             {
+                PhoneNumberLabel.Text = user.PhoneNumber;
                 TcLabel.Text = user.Tc;
                 BloodTypeLabel.Text = user.BloodType.ToString();
             }
@@ -47,6 +48,7 @@ namespace BloodDonationAppUI.Views
                 {
                     Tc = user.Tc,
                     BloodType = user.BloodType,
+                    PhoneNumber=user.PhoneNumber,
                     City = (City)Enum.Parse(typeof(City), CityPicker.SelectedItem.ToString()),
                     UrgencyLevel = (UrgencyLevel)Enum.Parse(typeof(UrgencyLevel), UrgencyPicker.SelectedItem.ToString())
                 };

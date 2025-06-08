@@ -22,24 +22,31 @@ namespace BloodDonationAppUI.Views
             try
             {
                 var user = SessionManager.GetUser();
+                var request = new GetRequests
+                {
+                    Tc = user.Tc,
+                    BloodType = user.BloodType
+                };
                 if (user != null)
                 {
 
                     FullNameLabel.Text = $"{user.FirstName} {user.LastName}";
-                    TcLabel.Text = user.Tc;
+                    PhoneNumberLabel.Text = user.PhoneNumber;
                     BloodTypeLabel.Text = user.BloodType.ToString();
                     CityLabel.Text = user.City.ToString();
 
-                    var requestsResponse = await apiService.GetRequestByBloodType((int)user.BloodType);
-
-                    if (requestsResponse.Success && requestsResponse.Data != null)
+                    var requestsResponse = await apiService.GetRequestByBloodType(request);
+                    if (requestsResponse.Success && requestsResponse.Data != null && requestsResponse.Data.Any())
                     {
                         RequestListView.ItemsSource = requestsResponse.Data;
                     }
                     else
                     {
-                        await DisplayAlert("Hata", $"Talepler yüklenemedi: {requestsResponse.Message}", "Tamam");
+                        RequestListView.ItemsSource = null;
+                        await DisplayAlert("Bilgi", "Size uygun aktif bir talep bulunamadı.", "Tamam");
                     }
+
+
                 }
 
 
@@ -48,6 +55,12 @@ namespace BloodDonationAppUI.Views
             {
                 await DisplayAlert("Hata", $"Veriler alınırken bir sorun oluştu: {ex.Message}", "Tamam");
             }
+        }
+
+        private async void OnApprovementsPageClicked(object sender, EventArgs e)
+        {
+            var approvementpage = ServiceHelper.GetService<MyApprovementsPage>();
+            await Navigation.PushAsync(approvementpage);
         }
 
         private async void OnDonateButtonClicked(object sender, EventArgs e)
@@ -69,15 +82,9 @@ namespace BloodDonationAppUI.Views
                 {
                     ApproveDto = new ApproveDto
                     {
+                        RequestId = selectedRequest.Id,
                         UserDonorTc = user.Tc,
-                        Request = new RequestModel
-                        {
-                            Id = selectedRequest.Id,
-                            UserTc = selectedRequest.Tc,
-                            BloodType = (int)selectedRequest.BloodType,
-                            UrgencyLevel = (int)selectedRequest.UrgencyLevel,
-                            City = (int)selectedRequest.City
-                        }
+                        RequesterTc = selectedRequest.Tc,
                     }
                 };
 
@@ -86,9 +93,6 @@ namespace BloodDonationAppUI.Views
                 if (result.Success)
                 {
                     await DisplayAlert("Başarılı", "Bağış talebiniz gönderildi!", "Tamam");
-
-                    // İsteğe bağlı: Başarılı bağış sonrası listeyi yenile
-                    // await RefreshRequestList();
                 }
                 else
                 {

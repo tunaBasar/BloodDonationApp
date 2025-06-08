@@ -14,6 +14,8 @@ public partial class App : Application
         Routing.RegisterRoute("Home", typeof(UserHomePage));
         Routing.RegisterRoute("CreateRequest", typeof(CreateRequestPage));
         Routing.RegisterRoute("MyRequests", typeof(MyRequestsPage));
+        Routing.RegisterRoute("MyApprovements", typeof(MyApprovementsPage));
+
     }
 
     protected override Window CreateWindow(IActivationState? activationState)

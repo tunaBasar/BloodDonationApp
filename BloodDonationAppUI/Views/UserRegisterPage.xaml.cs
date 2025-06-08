@@ -107,6 +107,7 @@ public partial class UserRegisterPage : ContentPage
                 LastName = LastNameEntry.Text,
                 Tc = TCNumberEntry.Text,
                 BirthDate = BirthDatePicker.Date,
+                PhoneNumber=PhoneEntry.Text,
                 Mail = EmailEntry.Text,
                 Password = PasswordEntry.Text,
                 City = (City)Enum.Parse(typeof(City), CityGroupPicker.SelectedItem?.ToString() ?? "Istanbul"),

@@ -19,11 +19,22 @@ namespace BloodDonationAppUserService.Controllers
         public async Task<IActionResult> SendDonationRequest([FromBody] MakeDonation makeDonation)
         {
             var result = await donationService.SendDonationRequest(makeDonation);
-            
+
             if (result.Success)
                 return Ok(result);
             else
                 return BadRequest(result);
+        }
+
+        [HttpPost("approvement")]
+        public async Task<IActionResult> CreateDonation(CreateDonationDto donationDto)
+        {
+            var result = await donationService.CreateDonation(donationDto);
+            if (result.Success)
+                return Ok(result);
+            else
+                return BadRequest(result);
+
         }
     }
 }

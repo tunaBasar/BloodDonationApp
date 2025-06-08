@@ -5,6 +5,7 @@ namespace BloodDonationAppUI.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Tc { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
         public DateTime BirthDate { get; set; }
         public string Mail { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
@@ -23,7 +24,7 @@ namespace BloodDonationAppUI.Models
         OPositive,
         ONegative
     }
-    
+
     public enum City
     {
         Istanbul,

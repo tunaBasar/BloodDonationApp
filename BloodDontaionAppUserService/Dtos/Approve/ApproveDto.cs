@@ -4,8 +4,10 @@ namespace BloodDonationAppUserService.Dtos
 {
     public class ApproveDto
     {
-        public RequestModel? request { get; set; }
+        public int RequestId { get; set; }
 
         public string? UserDonorTc { get; set; }
+
+        public string? RequesterTc{ get; set; }
     }
 }

@@ -64,6 +64,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = BloodDonationAppUI.Views.F
 build_metadata.AdditionalFiles.TargetPath = Views\ForgotPasswordPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\ForgotPasswordPage.xaml
 
+[C:/Users/ymanb/OneDrive/Desktop/Projects/BloodDonationAppUI/Views/MyApprovementsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BloodDonationAppUI.Views.MyApprovementsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MyApprovementsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MyApprovementsPage.xaml
+
 [C:/Users/ymanb/OneDrive/Desktop/Projects/BloodDonationAppUI/Views/MyRequestsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BloodDonationAppUI.Views.MyRequestsPage.xaml

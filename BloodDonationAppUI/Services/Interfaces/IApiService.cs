@@ -1,4 +1,5 @@
 using BloodDonationAppUI.Models;
+using BloodDonationAppUserService;
 
 namespace BloodDonationAppUI.Services.Interfaces
 {
@@ -10,10 +11,14 @@ namespace BloodDonationAppUI.Services.Interfaces
         Task<UserForgotPassword> ForgotPassword(UserForgotPassword userForgotPassword);
 
         Task<Response<CreateRequestModel>> CreateRequest(CreateRequestModel createRequestModel);
-        Task<Response<List<RequestResponseModel>>> GetRequestByBloodType(int bloodType);
+        Task<Response<List<RequestResponseModel>>> GetRequestByBloodType(GetRequests getRequests);
 
-        Task<Response<List<RequestResponseModel>>> GetRequestByTc(GetRequestsByTcModel getRequestsByTcModel);
+        Task<Response<List<RequestResponseModel>>> GetRequestByTc(GetRequests getRequests);
 
         Task<Response<T>> SendDonationRequestAsync<T>(DonationRequest request);
+
+        Task<Response<List<ApproveDto>>> GetMyApprovementsByTc(string RequesterTc);
+        Task<Response<bool>> CreateDonationAsync(CreateDonationDto createDonationDto);
+        Task<Response<bool>> RejectApprove(int ApproveId);
     }
 }

@@ -8,7 +8,6 @@
              ColumnDefinitions="2*,5*"
              Padding="0">
 
-              <!-- Sol Panel -->
               <Frame Grid.Row="0"
                      Grid.RowSpan="2"
                      Grid.Column="0"
@@ -40,7 +39,7 @@
                                           HorizontalOptions="Center"
                                           HorizontalTextAlignment="Center"/>
 
-                                   <Label x:Name="TcLabel"
+                                   <Label x:Name="PhoneNumberLabel"
                                           Style="{StaticResource BodyLabel}"
                                           HorizontalOptions="Center"
                                           HorizontalTextAlignment="Center"/>
@@ -80,6 +79,10 @@
                                    <Button Text="📋 Taleplerimi Gör"
                                            Style="{StaticResource SecondaryButton}"
                                            Clicked="OnTaleplerimiGorClicked"
+                                           FontSize="15"/>
+                                   <Button Text="Gelen istekler"
+                                           Style="{StaticResource SecondaryButton}"
+                                           Clicked="OnApprovementsPageClicked"
                                            FontSize="15"/>
 
                                    <Button Text="🚪 Çıkış Yap"
@@ -164,7 +167,7 @@
                                                                              <Label Text="{Binding Id}"
                                                                                     IsVisible="False"
                                                                                     x:Name="HiddenIdLabel"/>
-                                                                             <Label Text="{Binding Tc}"
+                                                                             <Label Text="{Binding PhoneNumber}"
                                                                                     FontSize="16"
                                                                                     TextColor="{StaticResource TextPrimary}"
                                                                                     FontAttributes="Bold"/>

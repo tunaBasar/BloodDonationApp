@@ -47,14 +47,14 @@ app.MapPost("/approve", async (ApplicationDbContext db, ApproveRequest request) 
 
     if (string.IsNullOrWhiteSpace(request.UserDonorTc))
         return Results.BadRequest("UserDonorTc is required");
-    
+
     if (request.RequestId <= 0)
         return Results.BadRequest("Valid RequestId is required");
 
 
     var existingApprove = await db.Approves
         .FirstOrDefaultAsync(a => a.UserDonorTc == request.UserDonorTc && a.RequestId == request.RequestId);
-    
+
     if (existingApprove != null)
         return Results.Conflict("Bu bağış talebi için zaten bir başvurunuz bulunmaktadır");
 
@@ -63,7 +63,7 @@ app.MapPost("/approve", async (ApplicationDbContext db, ApproveRequest request) 
         UserDonorTc = request.UserDonorTc,
         RequestId = request.RequestId,
         UserRequesterTc = request.UserRequesterTc,
-        IsApproved = null, 
+        IsApproved = null,
         CreatedAt = DateTime.UtcNow,
         UpdatedAt = null
     };
@@ -116,10 +116,11 @@ app.MapPut("/approve/confirm/{id}", async (int id, ApplicationDbContext db) =>
     approve.UpdatedAt = DateTime.UtcNow;
 
     await db.SaveChangesAsync();
-    
-    return Results.Ok(new { 
-        Message = "Bağış talebi onaylandı", 
-        Approve = approve 
+
+    return Results.Ok(new
+    {
+        Message = "Bağış talebi onaylandı",
+        Approve = approve
     });
 })
 .WithName("ConfirmApprove")
@@ -139,10 +140,11 @@ app.MapPut("/approve/reject/{id}", async (int id, ApplicationDbContext db) =>
     approve.RequestId = null;
 
     await db.SaveChangesAsync();
-    
-    return Results.Ok(new { 
-        Message = "Bağış talebi reddedildi", 
-        Approve = approve 
+
+    return Results.Ok(new
+    {
+        Message = "Bağış talebi reddedildi",
+        Approve = approve
     });
 })
 .WithName("RejectApprove")
@@ -177,6 +179,34 @@ app.MapDelete("/approve/{id}", async (int id, ApplicationDbContext db) =>
 })
 .WithName("DeleteApprove")
 .WithSummary("Bağış talebini sil");
+
+app.MapGet("/approve/incoming/{requesterTc}", async (string requesterTc, ApplicationDbContext db) =>
+{
+    var incomingRequests = await db.Approves
+        .Where(a => a.UserRequesterTc == requesterTc && a.IsApproved==null)
+        .OrderByDescending(a => a.CreatedAt)
+        .ToListAsync();
+
+    var dtoList = incomingRequests.Select(a => new ApproveDto
+    {
+        Id=a.Id,
+        RequesterTc = a.UserRequesterTc ?? "",
+        UserDonorTc = a.UserDonorTc,
+        RequestId = a.RequestId ?? 0,
+        CreatedAt = a.CreatedAt,
+        UpdatedAt = a.UpdatedAt,
+        IsApproved = a.IsApproved
+    }).ToList();
+
+    var response = new Response<List<ApproveDto>>
+    {
+        Success = true,
+        Data = dtoList
+    };
+
+    return Results.Ok(response);
+});
+
 
 app.Run();
 

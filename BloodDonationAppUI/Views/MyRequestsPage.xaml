@@ -7,15 +7,11 @@
 
     <Grid RowDefinitions="Auto,*"
           Padding="20">
-
-        <!-- Başlık -->
         <Label Grid.Row="0"
                Text="Bağış Taleplerimin"
                Style="{StaticResource HeaderLabel}"
                HorizontalOptions="Center"
                Margin="0,20,0,30"/>
-
-        <!-- Talep Listesi -->
         <ScrollView Grid.Row="1"
                     VerticalOptions="FillAndExpand"
                     Padding="0,10">
@@ -59,8 +55,6 @@
                                                    FontAttributes="Bold"/>
                                         </Frame>
                                     </HorizontalStackLayout>
-
-                                    <!-- Orta Satır: Şehir ve Aciliyet -->
                                     <HorizontalStackLayout Grid.Row="1"
                                                          Grid.Column="0"
                                                          Grid.ColumnSpan="2"

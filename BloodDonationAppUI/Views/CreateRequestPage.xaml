@@ -6,16 +6,14 @@
              BackgroundColor="{StaticResource LightGray}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
-
-            <!-- Başlık -->
+        <VerticalStackLayout Padding="20"
+                Spacing="20">
             <Label Text="Talep Oluştur"
                    FontSize="24"
                    FontAttributes="Bold"
                    TextColor="{StaticResource TextPrimary}"
                    HorizontalOptions="Center"/>
 
-            <!-- Aciliyet Seviyesi Seçimi -->
             <Label Text="Aciliyet Seviyesi"
                    FontSize="16"
                    TextColor="{StaticResource TextPrimary}"/>
@@ -45,18 +43,24 @@
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Istanbul</x:String>
                         <x:String>Ankara</x:String>
-                        <x:String>Izmir</x:String>
+                        <x:String>İzmir</x:String>
                         <x:String>Antalya</x:String>
                         <x:String>Konya</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
 
-            <!-- Kullanıcı Bilgileri -->
             <Label Text="T.C. Kimlik No"
                    FontSize="16"
                    TextColor="{StaticResource TextPrimary}"/>
             <Label x:Name="TcLabel"
+                   FontSize="14"
+                   TextColor="{StaticResource TextSecondary}"/>
+                   
+            <Label Text="Telefon Numarası"
+                   FontSize="16"
+                   TextColor="{StaticResource TextPrimary}"/>
+            <Label x:Name="PhoneNumberLabel"
                    FontSize="14"
                    TextColor="{StaticResource TextSecondary}"/>
 

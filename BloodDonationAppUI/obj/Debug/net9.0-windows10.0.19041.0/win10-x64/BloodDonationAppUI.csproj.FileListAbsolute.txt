@@ -471,3 +471,5 @@ C:\Users\ymanb\OneDrive\Desktop\Projects\BloodDonationAppUI\obj\Debug\net9.0-win
 C:\Users\ymanb\OneDrive\Desktop\Projects\BloodDonationAppUI\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 C:\Users\ymanb\OneDrive\Desktop\Projects\BloodDonationAppUI\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\ymanb\OneDrive\Desktop\Projects\BloodDonationAppUI\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\ymanb\OneDrive\Desktop\Projects\BloodDonationAppUI\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\user_placeholder.scale-100.png
+C:\Users\ymanb\OneDrive\Desktop\Projects\BloodDonationAppUI\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\resizetizer\r\user_placeholder.scale-100.png

@@ -21,7 +21,7 @@ namespace ApproveService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Approve", b =>
+            modelBuilder.Entity("ApproveService.Models.Approve", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

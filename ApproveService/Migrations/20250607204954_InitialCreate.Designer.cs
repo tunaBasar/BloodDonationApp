@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApproveService.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250604181023_InitialCreate")]
+    [Migration("20250607204954_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace ApproveService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Approve", b =>
+            modelBuilder.Entity("ApproveService.Models.Approve", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

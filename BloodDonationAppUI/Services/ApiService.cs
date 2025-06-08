@@ -3,8 +3,9 @@ using System.Text;
 using System.Text.Json;
 using BloodDonationAppUI.Models;
 using BloodDonationAppUI.Services.Interfaces;
+using BloodDonationAppUserService;
 using Microsoft.Extensions.Configuration;
-using Windows.System;
+using Windows.Storage.Pickers;
 
 namespace BloodDonationAppUI.Services
 {
@@ -12,11 +13,13 @@ namespace BloodDonationAppUI.Services
     {
         private readonly HttpClient httpClient;
         private readonly string baseUrl;
+        private readonly string approvementUrl;
 
         public ApiService(HttpClient httpClient, IConfiguration configuration)
         {
             this.httpClient = httpClient;
             baseUrl = configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5211/api";
+            approvementUrl = configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5179";
 
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(
@@ -51,7 +54,79 @@ namespace BloodDonationAppUI.Services
                 };
             }
         }
+        public async Task<Response<bool>> CreateDonationAsync(CreateDonationDto createDonationDto)
+        {
+            var endpoint = $"{baseUrl}/Donation/approvement";
 
+            try
+            {
+                var json = JsonSerializer.Serialize(createDonationDto);
+                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var httpResponse = await httpClient.PostAsync(endpoint, content);
+
+                var responseBody = await httpResponse.Content.ReadAsStringAsync();
+
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    return new Response<bool>
+                    {
+                        Success = false,
+                        Message = $"Sunucu hatası: {(int)httpResponse.StatusCode} - {responseBody}",
+                        Data = false
+                    };
+                }
+
+                return new Response<bool>
+                {
+                    Success = true,
+                    Message = "Bağış başarıyla oluşturuldu.",
+                    Data = true
+                };
+            }
+            catch (HttpRequestException httpEx)
+            {
+                return new Response<bool>
+                {
+                    Success = false,
+                    Message = $"İstek gönderilirken hata oluştu: {httpEx.Message}",
+                    Data = false
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response<bool>
+                {
+                    Success = false,
+                    Message = $"Beklenmeyen bir hata oluştu: {ex.Message}",
+                    Data = false
+                };
+            }
+        }
+        public async Task<Response<List<ApproveDto>>> GetMyApprovementsByTc(string RequesterTc)
+        {
+            try
+            {
+                var response = await httpClient.GetAsync($"{approvementUrl}/approve/incoming/{RequesterTc}");
+                response.EnsureSuccessStatusCode();
+                var responseJson = await response.Content.ReadAsStringAsync();
+
+                var approvement = JsonSerializer.Deserialize<Response<List<ApproveDto>>>(responseJson, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                return approvement!;
+            }
+            catch (Exception ex)
+            {
+                return new Response<List<ApproveDto>>
+                {
+                    Success = false,
+                    Message = $"Approvement getirilemedi: {ex.Message}"
+                };
+            }
+        }
         public async Task<UserForgotPassword> ForgotPassword(UserForgotPassword userForgotPassword)
         {
             try
@@ -60,13 +135,13 @@ namespace BloodDonationAppUI.Services
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 var response = await httpClient.PostAsync($"{baseUrl}/Auth/forgotpassword", content);
+
                 response.EnsureSuccessStatusCode();
                 var responseJson = await response.Content.ReadAsStringAsync();
                 var user = JsonSerializer.Deserialize<UserForgotPassword>(responseJson, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
-
                 return user;
             }
             catch (HttpRequestException ex)
@@ -101,8 +176,6 @@ namespace BloodDonationAppUI.Services
                 };
             }
         }
-
-
         public async Task<UserCreateModel> RegisterUser(UserCreateModel userCreateModel)
         {
             try
@@ -128,12 +201,11 @@ namespace BloodDonationAppUI.Services
             }
 
         }
-
-        public async Task<Response<List<RequestResponseModel>>> GetRequestByBloodType(int bloodType)
+        public async Task<Response<List<RequestResponseModel>>> GetRequestByBloodType(GetRequests getRequests)
         {
             try
             {
-                var response = await httpClient.GetAsync($"{baseUrl}/Request/by-bloodtype?bloodType={bloodType}");
+                var response = await httpClient.GetAsync($"{baseUrl}/Request/by-bloodtype?Tc={getRequests.Tc}&bloodType={getRequests.BloodType}");
                 response.EnsureSuccessStatusCode();
 
                 var responseJson = await response.Content.ReadAsStringAsync();
@@ -154,12 +226,11 @@ namespace BloodDonationAppUI.Services
                 };
             }
         }
-
-        public async Task<Response<List<RequestResponseModel>>> GetRequestByTc(GetRequestsByTcModel getRequestsByTcModel)
+        public async Task<Response<List<RequestResponseModel>>> GetRequestByTc(GetRequests getRequests)
         {
             try
             {
-                var response = await httpClient.GetAsync($"{baseUrl}/Request/by-tc?tc={getRequestsByTcModel.Tc}");
+                var response = await httpClient.GetAsync($"{baseUrl}/Request/by-tc?tc={getRequests.Tc}");
                 response.EnsureSuccessStatusCode();
 
                 var responseJson = await response.Content.ReadAsStringAsync();
@@ -198,7 +269,6 @@ namespace BloodDonationAppUI.Services
                 };
             }
         }
-
         public async Task<Response<T>> SendDonationRequestAsync<T>(DonationRequest request)
         {
             try
@@ -235,7 +305,29 @@ namespace BloodDonationAppUI.Services
                 };
             }
         }
+        public async Task<Response<bool>> RejectApprove(int ApproveId)
+        {
+            try
+            {
+                var response = await httpClient.DeleteAsync($"{approvementUrl}/approve/{ApproveId}");
+                response.EnsureSuccessStatusCode();
+                var responseJson = await response.Content.ReadAsStringAsync();
+                return new Response<bool>
+                {
+                    Data = true,
+                    Message = "Silme işlemi başarılı",
+                    Success = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response<bool>
+                {
+                    Data = false,
+                    Message = "Silme işlemi başarısız!!!",
+                    Success = false
+                };
+            }
+        }
     }
-
-
 }
