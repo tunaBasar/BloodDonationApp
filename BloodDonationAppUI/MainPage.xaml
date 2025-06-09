@@ -140,38 +140,6 @@
                                 Clicked="OnDonateBloodClicked"/>
                     </Grid>
                 </Frame>
-
-                <!-- Find Blood Card -->
-                <Frame Style="{StaticResource CardFrame}">
-                    <Grid ColumnDefinitions="Auto,*,Auto"
-                            ColumnSpacing="15">
-                        <Label Grid.Column="0"
-                               Text="🔍"
-                               FontSize="40"
-                               VerticalOptions="Center"/>
-
-                        <StackLayout Grid.Column="1"
-                                VerticalOptions="Center">
-                            <Label Text="Kan Ara"
-                                   FontSize="18"
-                                   FontAttributes="Bold"
-                                   TextColor="{StaticResource TextPrimary}"/>
-                            <Label Text="İhtiyaç duyulan kan grubunu bul"
-                                   Style="{StaticResource BodyLabel}"/>
-                        </StackLayout>
-
-                        <Button Grid.Column="2"
-                                Text="Ara"
-                                Style="{StaticResource SecondaryButton}"
-                                WidthRequest="80"
-                                HeightRequest="40"
-                                FontSize="14"
-                                CornerRadius="20"
-                                Clicked="OnFindBloodClicked"/>
-                    </Grid>
-                </Frame>
-
-                <!-- Register Card -->
                 <Frame Style="{StaticResource CardFrame}">
                     <Grid ColumnDefinitions="Auto,*,Auto,Auto"
                             ColumnSpacing="15">
@@ -209,31 +177,10 @@
                     </Grid>
                 </Frame>
             </StackLayout>
-
-            <!-- Emergency Section -->
             <Frame Style="{StaticResource CardFrame}"
                    BackgroundColor="{StaticResource Error}"
                    Margin="20,0,20,20">
                 <StackLayout>
-                    <Grid ColumnDefinitions="Auto,*"
-                            ColumnSpacing="15">
-                        <Label Grid.Column="0"
-                               Text="🚨"
-                               FontSize="30"
-                               VerticalOptions="Center"/>
-
-                        <StackLayout Grid.Column="1">
-                            <Label Text="ACİL KAN İHTİYACI!"
-                                   FontSize="18"
-                                   FontAttributes="Bold"
-                                   TextColor="{StaticResource White}"/>
-                            <Label Text="A+ kan grubu acil olarak aranıyor"
-                                   FontSize="14"
-                                   TextColor="{StaticResource White}"
-                                   Opacity="0.9"/>
-                        </StackLayout>
-                    </Grid>
-
                     <Button Text="HEMEN YARDIM ET"
                             BackgroundColor="{StaticResource White}"
                             TextColor="{StaticResource Error}"
@@ -242,8 +189,6 @@
                             Clicked="OnEmergencyClicked"/>
                 </StackLayout>
             </Frame>
-
-            <!-- Footer -->
             <StackLayout Padding="20"
                     BackgroundColor="{StaticResource DarkGray}">
                 <Label Text="Kan Bağışı Merkezi © 2024"

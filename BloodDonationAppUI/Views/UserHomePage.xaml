@@ -119,12 +119,14 @@
                                                  HasShadow="False"
                                                  Padding="0"
                                                  HorizontalOptions="FillAndExpand">
-                                                 <SearchBar Placeholder="🔍 Ara..."
+                                                 <SearchBar x:Name="SearchBar"
+                                                            Placeholder="🔍 Ara..."
                                                             BackgroundColor="Transparent"
                                                             HeightRequest="40"
                                                             PlaceholderColor="{StaticResource TextSecondary}"
                                                             TextColor="{StaticResource TextPrimary}"
-                                                            HorizontalOptions="FillAndExpand"/>
+                                                            HorizontalOptions="FillAndExpand"
+                                                            TextChanged="OnSearchTextChanged"/>
                                           </Frame>
 
                                           <Button Text="🔽 Filtrele"
@@ -133,7 +135,8 @@
                                                   WidthRequest="120"
                                                   CornerRadius="20"
                                                   FontSize="14"
-                                                  HorizontalOptions="End"/>
+                                                  HorizontalOptions="End"
+                                                  Clicked="OnFilterClicked"/>
                                    </HorizontalStackLayout>
                             </Frame>
                      </StackLayout>

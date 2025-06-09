@@ -16,14 +16,10 @@ public partial class MainPage : ContentPage
 
     private async void OnDonateBloodClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Kan Bağışı", "Randevu alma sayfasına yönlendiriliyorsunuz...", "Tamam");
+        var registerPage = ServiceHelper.GetService<UserRegisterPage>();
+        await DisplayAlert("Bağış yapmak için önce kayıt olmalısınız", "Kayıt sayfasına yönlendiriliyorsunuz", "Tamam");
+        await Navigation.PushAsync(registerPage);
     }
-
-    private async void OnFindBloodClicked(object sender, EventArgs e)
-    {
-        await DisplayAlert("Kan Ara", "Kan arama sayfasına yönlendiriliyorsunuz...", "Tamam");
-    }
-
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
         try
@@ -44,7 +40,7 @@ public partial class MainPage : ContentPage
             var loginPage = ServiceHelper.GetService<UserLoginPage>();
             await Navigation.PushAsync(loginPage);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             await DisplayAlert("Hata", $"Sayfa yüklenirken hata oluştu: {ex.Message}", "Tamam");
         }
@@ -53,19 +49,20 @@ public partial class MainPage : ContentPage
     private async void OnEmergencyClicked(object sender, EventArgs e)
     {
         bool answer = await DisplayAlert("Acil Kan İhtiyacı",
-            "Bu acil bir durumdur. Hemen kan bağışı merkezi ile iletişime geçmek istiyor musunuz?",
+            "Bu acil bir durumdur. Hemen Kızılay'ın resmi kan bağışı sayfasına gitmek istiyor musunuz?",
             "Evet", "Hayır");
 
         if (answer)
         {
             try
             {
-                await Launcher.OpenAsync("tel:+905551234567");
+                await Launcher.OpenAsync("https://www.kizilay.org.tr/");
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Hata", "Telefon uygulaması açılamadı", "Tamam");
+                await DisplayAlert("Hata", "Tarayıcı açılamadı", "Tamam");
             }
         }
     }
+
 }
